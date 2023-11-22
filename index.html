@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #020202;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+        @keyframes twinkling {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <script>
+        $(document).ready(function() {
+            createStars(200); // Quantidade de estrelas desejada
+        });
+
+        function createStars(numStars) {
+            const sky = $('.stars');
+
+            for (let i = 0; i < numStars; i++) {
+                const size = Math.random() * 3; // Tamanhos variados
+                const x = Math.random() * 100; // Posições aleatórias
+                const y = Math.random() * 100; // Posições aleatórias
+                const duration = Math.random() * 3 + 1; // Duração do piscar aleatória entre 1 e 4 segundos
+
+                const star = $('<div class="star"></div>');
+                star.css({
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    top: `${y}%`,
+                    left: `${x}%`,
+                    animation: `twinkling ${duration}s linear infinite`
+                });
+
+                sky.append(star);
+            }
+        }
+    </script>
+</body>
+</html>
